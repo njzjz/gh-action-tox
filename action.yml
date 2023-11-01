@@ -28,8 +28,6 @@ runs:
         "${{ inputs.plugins }}"
       shell: bash
     - run: >
-        pipx run
-        --python '${{ steps.python.outputs.python-path }}'
         tox
         2>&1
       shell: bash
