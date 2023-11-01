@@ -23,6 +23,7 @@ runs:
         tox
         --preinstall
         "${{ inputs.plugins }}"
+      shell: bash
     - run: >
         pipx run
         --python '${{ steps.python.outputs.python-path }}'
