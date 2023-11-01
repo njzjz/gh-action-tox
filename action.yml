@@ -21,7 +21,10 @@ runs:
         pipx install
         --python '${{ steps.python.outputs.python-path }}'
         tox
-        --preinstall
+      shell: bash
+    - run: >
+        pipx inject
+        tox
         "${{ inputs.plugins }}"
       shell: bash
     - run: >
