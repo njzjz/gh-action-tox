@@ -4,8 +4,11 @@ inputs:
   python-version:
     description: 'Python version'
     required: false
-    # pipx requires Python >=3.7
     default: "3.7 - 3.12"
+  plugins:
+    description: 'tox plugins'
+    required: false
+    default: "tox"
 runs:
   using: composite
   steps:
@@ -14,6 +17,12 @@ runs:
       with:
         python-version: "${{ inputs.python-version }}"
         update-environment: false
+    - run: >
+        pipx install
+        --python '${{ steps.python.outputs.python-path }}'
+        tox
+        --preinstall
+        "${{ inputs.plugins }}"
     - run: >
         pipx run
         --python '${{ steps.python.outputs.python-path }}'
